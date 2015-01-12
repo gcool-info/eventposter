@@ -5,7 +5,6 @@ var Router = Backbone.Router.extend({
 
 	home: function() {
 		var home = new homeView({model: model});
-
 		home.render();
 	},
 });
