@@ -1,3 +1,3 @@
-var model = Backbone.Model.extend({
-	
+var Model = Backbone.Model.extend({
+	url: "db.json"
 });

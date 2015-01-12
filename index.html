@@ -18,12 +18,17 @@
 
     	<script src="router.js"></script>
     	<script src="views.js"></script>
+    	<script src="model.js"></script>
 
     	<script type="text/javascript">
     		 var router = new Router();
-    		 var model;
+    		 var model = new Model();
 
-    		 Backbone.history.start();
+    		 model.fetch({
+    		 	success: function() {
+    		 		Backbone.history.start();
+    		 	}
+    		 })
     	</script>
     </body>
 </html>   
