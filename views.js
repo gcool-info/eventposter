@@ -4,7 +4,8 @@ var homeView = Backbone.View.extend({
 
 	events: {
 		'click .play-video': 'playVideo',
-		'click #remove-video': 'removeVideo'
+		'click .remove-video': 'removeVideo',
+		'click #learn-more': 'showDetails'
 	},
 
 	render: function() {
@@ -14,76 +15,74 @@ var homeView = Backbone.View.extend({
 	playVideo: function() {
 
 		"use strict";
-  		$("#video-container").html('<iframe width="100%" height="100%" src="http://www.youtube.com/embed/' + this.model.get('video-key') + '?autoplay=1&loop=1&rel=0&wmode=transparent&showinfo=0&controls=0" frameborder="0" allowfullscreen wmode="Opaque"></iframe>');
+  		$(".video-container").html('<iframe width="100%" height="100%" src="http://www.youtube.com/embed/' + this.model.get('video-key') + '?autoplay=1&loop=1&rel=0&wmode=transparent&showinfo=0&controls=0" frameborder="0" allowfullscreen wmode="Opaque"></iframe>');
 
-		$( "#organisation-logo" ).animate({
-			left: -1000,
-			}, 500, function() {});
+  		this.removeElements();
 
-		$( "#event-logo" ).animate({
-			left: 2000,
-			}, 500, function() {});
+  		$(".video-container").addClass("animation-fade-in");
+  		$(".full").addClass("animation-slide-down-fade");
+	},
 
-		$( "#play-video" ).animate({
-			opacity: 0,
-			top: 50,
-			}, 500, function() {});
+	showDetails: function() {
+		$( ".details" ).show(100);
+		$(".details").addClass("animation-fade-in");
+		this.removeElements();
+	},
 
-		$( "#description" ).animate({
-			bottom: -1000,
-			}, 500, function() {});
+	removeElements: function() {
+		$( ".remove-video" ).show(0);
 
-		$( ".full" ).animate({
-			opacity: 0,
-			top: 50,
-			}, 500, function() {});
+		$(".organisation-logo").addClass("animation-slide-out-left");
+		$(".event-logo").addClass("animation-slide-out-right");
+		$(".play-video").addClass("animation-slide-out-bottom");
+		$(".description").addClass("animation-slide-out-bottom");
+		$(".action-btn").addClass("animation-slide-down");
+		$(".remove-video").addClass("animation-fade-in");
+	},
 
-		$( "#video-container" ).animate({
-			opacity: 1,
-			}, 500, function() {});
+	addElements: function() {
+		$(".video-container").addClass("animation-fade-out");
+  		$(".remove-video").addClass("animation-fade-out");
+  		$(".action-btn").addClass("animation-slide-up");
+  		$(".full").addClass("animation-slide-up-fade");
+  		$(".description").addClass("animation-slide-in-bottom");
+  		$(".play-video").addClass("animation-slide-in-bottom");
+  		$(".event-logo").addClass("animation-slide-in-right");
+  		$(".organisation-logo").addClass("animation-slide-in-left");
+  		$(".details").addClass("animation-fade-out");
+		$( "#remove-video" ).hide(500);
+		$( ".details" ).hide(1000);
 
-		$( "#remove-video" ).show(1000);
 
-		$( "#remove-video" ).animate({
-			opacity: 1,
-			}, 1000, function() {});
+		setTimeout(function(){
+			$(".organisation-logo").removeClass("animation-slide-out-left");
+			$(".event-logo").removeClass("animation-slide-out-right");
+			$(".play-video").removeClass("animation-slide-out-bottom");
+			$(".description").removeClass("animation-slide-out-bottom");
+			$(".full").removeClass("animation-slide-down-fade");
+			$(".action-btn").removeClass("animation-slide-down");
+			$(".remove-video").removeClass("animation-fade-in");
+			$(".video-container").removeClass("animation-fade-in");	
+			$(".details").removeClass("animation-fade-in");
+
+			$(".video-container").removeClass("animation-fade-out");
+	  		$(".remove-video").removeClass("animation-fade-out");
+	  		$(".action-btn").removeClass("animation-slide-up");
+	  		$(".full").removeClass("animation-slide-up-fade");
+	  		$(".description").removeClass("animation-slide-in-bottom");
+	  		$(".play-video").removeClass("animation-slide-in-bottom");
+	  		$(".event-logo").removeClass("animation-slide-in-right");
+	  		$(".organisation-logo").removeClass("animation-slide-in-left");
+	  		$(".details").removeClass("animation-fade-out");
+	  	},2000)
 	},
 
 	removeVideo: function() {
 
+
 		"use strict";
-  		$("#video-container").html('<iframe width="100%" height="100%" src="http://www.youtube.com/embed/' + this.model.get('video-key') + '?wmode=transparent&showinfo=0&controls=0" frameborder="0" allowfullscreen wmode="Opaque"></iframe>');
+  		$(".video-container").html('<iframe width="100%" height="100%" src="http://www.youtube.com/embed/' + this.model.get('video-key') + '?wmode=transparent&showinfo=0&controls=0" frameborder="0" allowfullscreen wmode="Opaque"></iframe>');
 
-		$( "#organisation-logo" ).animate({
-			left: 0,
-			}, 500, function() {});
-
-		$( "#event-logo" ).animate({
-			left: 0,
-			}, 500, function() {});
-
-		$( "#play-video" ).animate({
-			opacity: 1,
-			top: 0,
-			}, 500, function() {});
-
-		$( "#description" ).animate({
-			bottom: 0,
-			}, 500, function() {});
-
-		$( ".full" ).animate({
-			opacity: 0.15,
-			top: 0,
-			}, 500, function() {});
-
-		$( "#video-container" ).animate({
-			opacity: 0,
-			}, 500, function() {});
-
-		$( "#remove-video" ).hide(1000);
-
-		$( "#remove-video" ).animate({
-			opacity: 0,
-			}, 1000, function() {});
+  		this.addElements();
 	},
 });
