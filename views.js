@@ -50,6 +50,7 @@ var homeView = Backbone.View.extend({
 	},
 
 	removeVideo: function() {
+
 		"use strict";
   		$("#video-container").html('<iframe width="100%" height="100%" src="http://www.youtube.com/embed/' + this.model.get('video-key') + '?wmode=transparent&showinfo=0&controls=0" frameborder="0" allowfullscreen wmode="Opaque"></iframe>');
 

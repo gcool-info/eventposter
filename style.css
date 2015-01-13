@@ -39,16 +39,6 @@ a:active {
 	opacity: 0;
 }
 
-#remove-video {
-	opacity: 0;
-	display: none;
-	position: fixed;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	background-color: rgba(0,0,0,0.4);
-}
-
 .row {
 	margin-top: 2em;
 	margin-bottom: 2em;
@@ -97,5 +87,30 @@ a:active {
  	width: 43%;
  	margin-left: 57%;
  	opacity: 0.5;
+}
+
+#remove-video {
+	opacity: 0;
+	display: none;
+	position: fixed;
+	z-index: 2;
+}
+
+.circle {
+	border-radius: 50%;
+	border: 1px solid rgb(246,246,246);
+	width: 4em;
+	height: 4em;
+	text-align: center;
+	border-color: rgb(246,246,246); 
+}
+
+.leftBack {
+	float: left;
+	margin-left: 0.4em;
+}
+
+.leftBack h2 {
+	margin-top: 0.4em;
 }
 
