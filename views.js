@@ -3,11 +3,15 @@ var homeView = Backbone.View.extend({
 	el: '.page',
 
 	events: {
-		'click .play-video': 'playVideo'
+		'click .play-video': 'playVideo',
+		'click #learn-more': 'showDetails',
+		'click #participate': 'showForm',
 	},
 
 	render: function() {
 		this.$el.html(_.template($('#home').html()));
+
+		this.setBtnPosition();
 
 		/* Add animation classes */
 		$(".description").addClass("animation-slide-in-bottom");
@@ -15,10 +19,19 @@ var homeView = Backbone.View.extend({
   		$(".event-logo").addClass("animation-slide-in-right");
   		$(".organisation-logo").addClass("animation-slide-in-left");
   		$(".full").addClass("animation-slide-up-fade");
+  		$(".action-btn").addClass("animation-slide-up");
+
 	},
 
-	playVideo: function() {
+	setBtnPosition: function() {
+		var contentHeight = $(".description").position.y;
+		var margin = 30;
 
+		$(".action-btn").css('top', contentHeight + margin);
+	},	
+
+
+	hideView: function() {
 		/* Remove previous animation classes */
 		$(".description").removeClass("animation-slide-in-bottom");
   		$(".play-video").removeClass("animation-slide-in-bottom");
@@ -32,11 +45,31 @@ var homeView = Backbone.View.extend({
 		$(".play-video").addClass("animation-slide-out-bottom");
 		$(".description").addClass("animation-slide-out-bottom");
 		$(".full").addClass("animation-slide-down-fade");
+	},
+
+	playVideo: function() {
+
+		this.hideView();		
 
 		setTimeout(function(){
 			router.navigate('video', {trigger: true});
 		},500)
+	},
 
+	showDetails: function() {
+		this.hideView();		
+
+		setTimeout(function(){
+			router.navigate('details', {trigger: true});
+		},500)
+	},
+
+	showForm: function() {
+		this.hideView();
+
+		setTimeout(function(){
+			router.navigate('participate', {trigger: true});
+		},500)
 	},
 });
 
@@ -45,12 +78,16 @@ var videoView = Backbone.View.extend({
 	el: '.page',
 
 	events: {
-		'click .remove-video': 'removeVideo',
+		'click .go-back': 'removeVideo',
+		'click #learn-more': 'showDetails',
+		'click #participate': 'showForm',
 	},
 
 
 	render: function() {
 		this.$el.html(_.template($('#video').html()));
+
+		this.setBtnPosition();
 
 		"use strict";
   		$(".video-container").html('<iframe width="100%" height="100%" src="http://www.youtube.com/embed/' + this.model.get('video-key') + '?autoplay=1&loop=1&rel=0&wmode=transparent&showinfo=0&controls=0" frameborder="0" allowfullscreen wmode="Opaque"></iframe>');
@@ -58,26 +95,93 @@ var videoView = Backbone.View.extend({
   		$(".action-btn").addClass("animation-slide-down");
   		$(".video-container").addClass("animation-fade-in");
   		$(".full").addClass("animation-slide-down-fade");
-  		$( ".remove-video" ).show(0);
-  		$(".remove-video").addClass("animation-fade-in");
+  		$(".go-back").addClass("animation-fade-in");
+	},
+
+	setBtnPosition: function() {
+		var contentHeight = $(".video-container").height();
+		var margin = -90;
+		$(".action-btn").css('top',contentHeight + margin);
+	},
+
+	showDetails: function() {
+		this.hideView();
+		
+  		setTimeout(function(){
+			router.navigate('details', {trigger: true});
+		},1000)
+	},
+
+	showForm: function() {
+		this.hideView();
+
+		setTimeout(function(){
+			router.navigate('participate', {trigger: true});
+		},500)
+	},
+
+	hideView: function() {
+		"use strict";
+  		$(".video-container").html('<iframe width="100%" height="100%" src="http://www.youtube.com/embed/' + this.model.get('video-key') + '?wmode=transparent&showinfo=0&controls=0" frameborder="0" allowfullscreen wmode="Opaque"></iframe>');
+
+
+  		$(".action-btn").removeClass("animation-slide-down");
+  		$(".video-container").removeClass("animation-fade-in");
+  		$(".full").removeClass("animation-slide-down-fade");
+  		$(".go-back").removeClass("animation-fade-in");
+
+  		$(".video-container").addClass("animation-fade-out");
+  		$(".go-back").addClass("animation-fade-out");
+  		$(".action-btn").addClass("animation-slide-up");
 	},
 
 	removeVideo: function() {
 
-		"use strict";
-  		$(".video-container").html('<iframe width="100%" height="100%" src="http://www.youtube.com/embed/' + this.model.get('video-key') + '?wmode=transparent&showinfo=0&controls=0" frameborder="0" allowfullscreen wmode="Opaque"></iframe>');
+		this.hideView();
 
-  		$(".video-container").addClass("animation-fade-out");
-  		$(".remove-video").addClass("animation-fade-out");
+  		setTimeout(function(){
+			router.navigate('', {trigger: true});
+		},500)
+	},
+});
+
+var detailsView = Backbone.View.extend({
+
+	el: '.page',
+
+	events: {
+		'click .go-back': 'removeDetails',
+	},
+
+	render: function() {
+		this.$el.html(_.template($('#details').html()));
+
+		this.setBtnPosition();
+
+		$(".go-back").addClass("animation-fade-in");
+		$(".details").addClass("animation-fade-in");
+		$(".full").addClass("animation-slide-up-fade");
+		$(".action-btn").addClass("animation-slide-down");
+	},
+
+	setBtnPosition: function() {
+		var contentHeight = $(".details").position.y;
+		var margin = 20;
+		$(".action-btn").css('top',contentHeight + margin);
+	},
+
+	removeDetails: function() {
+		$(".full").removeClass("animation-slide-up-fade")
+		$(".full").addClass("animation-slide-down-fade");
+		$(".go-back").addClass("animation-fade-out");
+  		$(".details").addClass("animation-fade-out");
   		$(".action-btn").addClass("animation-slide-up");
 
   		setTimeout(function(){
-  			$(".action-btn").removeClass("animation-slide-down");
-  			$(".action-btn").removeClass("animation-slide-up");
 			router.navigate('', {trigger: true});
 
 		},500)
-	},
+	}
 });
 
 var editView = Backbone.View.extend({
@@ -86,5 +190,31 @@ var editView = Backbone.View.extend({
 
 	render: function() {
 		this.$el.html(_.template($('#edit').html()));
+
 	},
-})
+});
+
+var participateView = Backbone.View.extend({
+
+	el: '.page',
+
+	events: {
+		'click .go-back': 'removeForm',
+	},
+
+	render: function() {
+		this.$el.html(_.template($('#participate-form').html()));
+
+		$(".go-back").addClass("animation-fade-in");
+		$(".form-container").addClass("animation-fade-in");
+	},
+
+	removeForm: function() {
+		$(".go-back").addClass("animation-fade-out");
+		$(".form-container").addClass("animation-slide-down-fade");
+
+		setTimeout(function(){
+			router.navigate('', {trigger: true});
+		},1000)
+	}
+});
