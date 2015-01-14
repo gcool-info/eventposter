@@ -12,6 +12,18 @@
 
     </head>
     <body>
+    	<div class="page">
+    		
+    	</div>
+    	<div class="row action-btn">
+			<div class="col-md-4 col-md-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 col-sm-offset-4 text-center"> 
+				<button type="button" class="btn btn-default" id="participate">Participate</button>
+			</div>
+			<div class="col-md-4 col-sm-4 col-xs-4 text-center"> 
+				<button type="button" class="btn btn-default" id="learn-more">Learn more</button>
+			</div>
+		</div>
+
     	<!-- Basic libraries -->
     	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
@@ -20,70 +32,99 @@
     	<!-- My files -->
     	<script src="router.js"></script>
     	<script src="views.js"></script>
-    	<script src="model.js"></script>
+    	<script src="model.js"></script> 
 
     	<!-- Templates -->
-    	<script type="text/template" id="home">
 
-    	<div class="video-container">  
-    		<iframe width="100%" height="100%" src="http://www.youtube.com/embed/<%= model.get('video-key') %>?wmode=transparent&showinfo=0&controls=0" frameborder="0" allowfullscreen wmode="Opaque"></iframe>
-    	</div>
-
-    	<div class="row remove-video">
-    		<div class="col-md-1">
-	    		<div class="circle leftBack">
-	    			<a href="#"><h2><i class="menuIcon fa fa-chevron-left"></i></h2></a>
-	    		</div>
-	    	</div>
-	    </div>
-
-    	<div class="full" style="background: url(<%= model.get('background-image') %>) no-repeat center center;"></div>
-		<div class="container">
-			<div class="row organisation-logo">
-				<div class="col-md-2 col-sm-3 col-xs-4 col-md-offset-5 col-xs-offset-4 col-sm-offset-3">
-					<img src="<%= model.get('organisation-logo') %>" />
+    	<script type="text/template" id="edit">
+    		<div class="full" style="background: url(<%= model.get('background-image') %>) no-repeat center center;"></div>
+    		<div class="container">
+    			<div class="row">
+					<form class="form-horizontal">
+					  <div class="form-group">
+					    <label for="title" class="col-sm-2 control-label">Title</label>
+					    <div class="col-sm-6">
+					      <input type="text" class="form-control" id="title" placeholder="title" value="<%= model.get('title') %>">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="baseline" class="col-sm-2 control-label">Baseline</label>
+					    <div class="col-sm-6">
+					      <input type="text" class="form-control" id="baseline" placeholder="baseline" value="<%= model.get('description') %>">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="details" class="col-sm-2 control-label">Details</label>
+					    <div class="col-sm-6">
+					      <textarea class="form-control" id="details" rows="10" placeholder="details"><%= model.get('details') %></textarea>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <div class="col-sm-offset-2 col-sm-10">
+					      <button type="submit" class="btn btn-default">Sign in</button>
+					    </div>
+					  </div>
+					</form>
 				</div>
-			</div>
-			<div class="row event-logo">
-				<div class="col-md-12">
-					<img src="<%= model.get('event-logo') %>"/>
-				</div>
-			</div>
-			<div class="row details">
-				<div class="col-md-12">
-					<p><%= model.get('details') %></p>
-				</div>
-			</div>
-			<div class="row play-video">
-				<div class="col-md-10 col-sm-12 text-center col-md-offset-1">
-					<a class="play-video" href="#"><h1 class="outer"><i class="fa fa-play-circle"></i></a>
-					<div class="divider-left"></div>
-					<div class="divider-right"></div>
-					</h1>
-				</div>
-			</div>
-			<div class="row  description">
-				<div class="col-md-8 col-sm-12 text-center col-md-offset-2">
-					<p><%= model.get('description') %></p>
-				</div>
-			</div>
-			<div class="row"></div>
-			<div class="row action-btn">
-				<div class="col-md-2 col-md-offset-4 col-sm-3 col-xs-offset-2 col-xs-4 col-sm-offset-2 text-center"> 
-					<button type="button" class="btn btn-default" id="participate">Participate</button>
-				</div>
-				<div class="col-md-2 col-sm-3 col-xs-4 text-center"> 
-					<button type="button" class="btn btn-default" id="learn-more">Learn more</button>
-				</div>
-			</div>
-		</div>
-
+    		</div>
     	</script>
+
+    	<script type="text/template" id="home">
+	    	<div class="full" style="background: url(<%= model.get('background-image') %>) no-repeat center center;"></div>
+			<div class="container">
+				<div class="row organisation-logo">
+					<div class="col-md-2 col-sm-3 col-xs-4 col-md-offset-5 col-xs-offset-4 col-sm-offset-3">
+						<img src="<%= model.get('organisation-logo') %>" />
+					</div>
+				</div>
+				<div class="row event-logo">
+					<div class="col-md-12">
+						<img src="<%= model.get('event-logo') %>"/>
+					</div>
+				</div>
+				<div class="row details">
+					<div class="col-md-12">
+						<p><%= model.get('details') %></p>
+					</div>
+				</div>
+				<div class="row play-video">
+					<div class="col-md-10 col-sm-12 text-center col-md-offset-1">
+						<a class="play-video" href="#"><h1 class="outer"><i class="fa fa-play-circle"></i></a>
+						<div class="divider-left"></div>
+						<div class="divider-right"></div>
+						</h1>
+					</div>
+				</div>
+				<div class="row  description">
+					<div class="col-md-8 col-sm-12 text-center col-md-offset-2">
+						<p><%= model.get('description') %></p>
+					</div>
+				</div>
+				<div class="row"></div>
+			</div>
+    	</script>
+
+    	<script type="text/template" id="video">
+    		<div class="video-container">  
+	    		<iframe width="100%" height="100%" src="http://www.youtube.com/embed/<%= model.get('video-key') %>?wmode=transparent&showinfo=0&controls=0" frameborder="0" allowfullscreen wmode="Opaque"></iframe>
+	    	</div>
+
+	    	<div class="row remove-video">
+	    		<div class="col-md-1">
+		    		<div class="circle leftBack">
+		    			<h2><i class="menuIcon fa fa-chevron-left"></i></h2>
+		    		</div>
+		    	</div>
+		    </div>
+    	</script>	
 
     	<!-- Program execution entry point -->
     	<script type="text/javascript">
     		 var router = new Router();
     		 var model = new Model();
+    		 var home = new homeView({model: model});
+	 		 var video = new videoView({model: model});
+	 		 var editPage = new editView({model: model});
 
     		 model.fetch({
     		 	success: function() {

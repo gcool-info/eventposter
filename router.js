@@ -1,10 +1,19 @@
 var Router = Backbone.Router.extend({
 	routes: {
-    	'':'home'
+    	'':'home',
+    	'edit': 'editInfo',
+    	'video': 'viewVideo'
 	},
 
 	home: function() {
-		var home = new homeView({model: model});
 		home.render();
 	},
+
+	viewVideo: function() {
+		video.render();
+	},
+
+	editInfo: function() {
+		editPage.render();
+	}
 });
