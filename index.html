@@ -3,7 +3,6 @@
         <!-- General Settings -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no">
-        <title>My Title</title>
         <meta name="description" content="" />
 
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -20,12 +19,16 @@
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
 
-    	<!-- My files -->
+    	<!-- Included files -->
     	<script src="router.js"></script>
     	<script src="views.js"></script>
     	<script src="model.js"></script> 
 
-    	<!-- Templates -->
+    	<!-- *************************************************************************************************************************************************** -->
+
+    																			<!-- Templates -->
+
+    	<!-- *********************************************************** Template for the event details page *************************************************** -->
     	<script type="text/template" id="details">
     		<div class="full" style="background: url(<%= model.get('background-image') %>) no-repeat center center;"></div>
     		<div class="row go-back">
@@ -52,6 +55,7 @@
 			</div>
     	</script>
 
+    	<!-- *********************************************************** Template for the google form page *************************************************** -->
     	<script type="text/template" id="participate-form">
     		<div class="form-container">
     			<iframe src="<%= model.get('subscibe-form') %>/viewform?embedded=true" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
@@ -67,6 +71,7 @@
   
     	</script>
 
+    	<!-- *********************************************************** Template for the edit page *************************************************** -->
     	<script type="text/template" id="edit">
     		<div class="full" style="background: url(<%= model.get('background-image') %>) no-repeat center center;"></div>
     		<div class="container">
@@ -100,6 +105,7 @@
     		</div>
     	</script>
 
+    	<!-- *********************************************************** Template for the home page *************************************************** -->
     	<script type="text/template" id="home">
 	    	<div class="full" style="background: url(<%= model.get('background-image') %>) no-repeat center center;"></div>
 			<div class="container">
@@ -138,6 +144,7 @@
 			</div>
     	</script>
 
+		<!-- *********************************************************** Template for the promotional video page *************************************************** -->
     	<script type="text/template" id="video">
     		<div class="video-container">  
 	    		<iframe width="100%" height="100%" src="http://www.youtube.com/embed/<%= model.get('video-key') %>?wmode=transparent&showinfo=0&controls=0" frameborder="0" allowfullscreen wmode="Opaque"></iframe>
@@ -161,13 +168,16 @@
 			</div>
     	</script>	
 
-    	<!-- Program execution entry point -->
+    	<!-- *********************************************************** Program entry point *************************************************** -->
     	<script type="text/javascript">
     		 var router = new Router();
     		 var model = new Model();
 
     		 model.fetch({
     		 	success: function() {
+
+    		 		// Set the page title 
+
     		 		Backbone.history.start();
     		 	}
     		 })

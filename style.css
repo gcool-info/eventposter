@@ -139,7 +139,6 @@ a:active {
 
 /****************** ANIMATIONS ******************/
 
-/* For Chrome */
 @-webkit-keyframes slide-out-left {
 	0% {
 		transform: translate3d(0, 0, 0);
@@ -165,7 +164,6 @@ a:active {
 	-webkit-animation: slide-out-left 1s forwards;
 }
 
-/* For Chrome */
 @-webkit-keyframes slide-in-left {
 	0% {
 		transform: translate3d(-1000px, 0, 0);
@@ -194,7 +192,6 @@ a:active {
 
 }
 
-/* For Chrome */
 @-webkit-keyframes slide-out-right {
 	0% {
 		transform: translate3d(0, 0, 0);
@@ -220,7 +217,6 @@ a:active {
 	-webkit-animation: slide-out-right 1s forwards;
 }
 
-/* For Chrome */
 @-webkit-keyframes slide-in-right {
 	0% {
 		transform: translate3d(2000px, 0, 0);
@@ -248,7 +244,6 @@ a:active {
     animation-delay: 0.5s;
 }
 
-/* For Chrome */
 @-webkit-keyframes slide-out-bottom {
 	0% {
 		opacity: 1;
@@ -278,7 +273,6 @@ a:active {
 	-webkit-animation: slide-out-bottom 0.5s forwards;
 }
 
-/* For Chrome */
 @-webkit-keyframes slide-in-bottom {
 	0% {
 		opacity: 0;
@@ -310,7 +304,6 @@ a:active {
     animation-delay: 1s;
 }
 
-/* For Chrome */
 @-webkit-keyframes slide-down {
 	0% {
 		transform: translate3d(0, 0, 0);
@@ -342,7 +335,6 @@ a:active {
     animation-delay: 1s;
 }
 
-/* For Chrome */
 @-webkit-keyframes slide-up {
 	0% {
 		transform: translate3d(0, 100%, 0);
@@ -372,7 +364,6 @@ a:active {
 	-webkit-animation: slide-up 1s both;
 }
 
-/* For Chrome */
 @-webkit-keyframes fade-in {
 	0% {
 		opacity: 0;
@@ -400,7 +391,6 @@ a:active {
     animation-delay: 1s;
 }
 
-/* For Chrome */
 @-webkit-keyframes fade-out {
 	0% {
 		opacity: 1;
@@ -426,7 +416,6 @@ a:active {
 	-webkit-animation: fade-out 0.5s forwards;
 }
 
-/* For Chrome */
 @-webkit-keyframes slide-down-fade {
 	0% {
 		transform: translate3d(0, 0, 0);
@@ -456,7 +445,6 @@ a:active {
 	-webkit-animation: slide-down-fade 0.5s forwards;
 }
 
-/* For Chrome */
 @-webkit-keyframes slide-up-fade {
 	0% {
 		transform: translate3d(0, 10%, 0);

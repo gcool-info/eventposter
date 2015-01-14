@@ -11,9 +11,10 @@ var homeView = Backbone.View.extend({
 	render: function() {
 		this.$el.html(_.template($('#home').html()));
 
+		// Set the position for the two buttons at the page bottom. It depends on the height of the content that is on the page
 		this.setBtnPosition();
 
-		/* Add animation classes */
+		// Entry Animations
 		$(".description").addClass("animation-slide-in-bottom");
   		$(".play-video").addClass("animation-slide-in-bottom");
   		$(".event-logo").addClass("animation-slide-in-right");
@@ -23,6 +24,7 @@ var homeView = Backbone.View.extend({
 
 	},
 
+	// Function to seet the position for the two buttons at the page bottom
 	setBtnPosition: function() {
 		var contentHeight = $(".description").position.y;
 		var margin = 30;
@@ -31,6 +33,7 @@ var homeView = Backbone.View.extend({
 	},	
 
 
+	// Exit animations
 	hideView: function() {
 		/* Remove previous animation classes */
 		$(".description").removeClass("animation-slide-in-bottom");
@@ -47,6 +50,7 @@ var homeView = Backbone.View.extend({
 		$(".full").addClass("animation-slide-down-fade");
 	},
 
+	// Navigate to the promotional video details
 	playVideo: function() {
 
 		this.hideView();		
@@ -56,6 +60,7 @@ var homeView = Backbone.View.extend({
 		},500)
 	},
 
+	// Navigate to the event details
 	showDetails: function() {
 		this.hideView();		
 
@@ -64,6 +69,7 @@ var homeView = Backbone.View.extend({
 		},500)
 	},
 
+	// Navigate to the google form
 	showForm: function() {
 		this.hideView();
 
@@ -73,6 +79,7 @@ var homeView = Backbone.View.extend({
 	},
 });
 
+/********* View for the promotional video ********/
 var videoView = Backbone.View.extend({
 
 	el: '.page',
@@ -87,8 +94,10 @@ var videoView = Backbone.View.extend({
 	render: function() {
 		this.$el.html(_.template($('#video').html()));
 
+		// Set the position for the two buttons at the page bottom. It depends on the height of the content that is on the page
 		this.setBtnPosition();
 
+		// The entry animations
 		"use strict";
   		$(".video-container").html('<iframe width="100%" height="100%" src="http://www.youtube.com/embed/' + this.model.get('video-key') + '?autoplay=1&loop=1&rel=0&wmode=transparent&showinfo=0&controls=0" frameborder="0" allowfullscreen wmode="Opaque"></iframe>');
 
@@ -98,12 +107,14 @@ var videoView = Backbone.View.extend({
   		$(".go-back").addClass("animation-fade-in");
 	},
 
+	// Function to seet the position for the two buttons at the page bottom
 	setBtnPosition: function() {
 		var contentHeight = $(".video-container").height();
-		var margin = -90;
+		var margin = -120;
 		$(".action-btn").css('top',contentHeight + margin);
 	},
 
+	// Navigate to the details of the event
 	showDetails: function() {
 		this.hideView();
 		
@@ -112,6 +123,7 @@ var videoView = Backbone.View.extend({
 		},1000)
 	},
 
+	// Navigate to the forn of the event
 	showForm: function() {
 		this.hideView();
 
@@ -120,6 +132,7 @@ var videoView = Backbone.View.extend({
 		},500)
 	},
 
+	// Exit animations
 	hideView: function() {
 		"use strict";
   		$(".video-container").html('<iframe width="100%" height="100%" src="http://www.youtube.com/embed/' + this.model.get('video-key') + '?wmode=transparent&showinfo=0&controls=0" frameborder="0" allowfullscreen wmode="Opaque"></iframe>');
@@ -145,6 +158,7 @@ var videoView = Backbone.View.extend({
 	},
 });
 
+/********* View for the details of the event ********/
 var detailsView = Backbone.View.extend({
 
 	el: '.page',
@@ -156,21 +170,33 @@ var detailsView = Backbone.View.extend({
 	render: function() {
 		this.$el.html(_.template($('#details').html()));
 
+		// Set the position for the two buttons at the page bottom. It depends on the height of the content that is on the page
 		this.setBtnPosition();
 
+
+		// The entry animations
 		$(".go-back").addClass("animation-fade-in");
 		$(".details").addClass("animation-fade-in");
 		$(".full").addClass("animation-slide-up-fade");
 		$(".action-btn").addClass("animation-slide-down");
+
+		
 	},
 
+	// Function to seet the position for the two buttons at the page bottom
 	setBtnPosition: function() {
-		var contentHeight = $(".details").position.y;
-		var margin = 20;
-		$(".action-btn").css('top',contentHeight + margin);
+		var contentHeight = $(".details").height() + $(".go-back").height();
+		var pageHeight = $(".full").height();
+
+		console.log(pageHeight);
+		var top = (contentHeight > pageHeight ? contentHeight + 30 : pageHeight - 110);
+
+		$(".action-btn").css('top', top);
 	},
 
 	removeDetails: function() {
+
+		// The exit animations
 		$(".full").removeClass("animation-slide-up-fade")
 		$(".full").addClass("animation-slide-down-fade");
 		$(".go-back").addClass("animation-fade-out");
@@ -178,12 +204,13 @@ var detailsView = Backbone.View.extend({
   		$(".action-btn").addClass("animation-slide-up");
 
   		setTimeout(function(){
-			router.navigate('', {trigger: true});
+			router.navigate('#', {trigger: true});
 
 		},500)
 	}
 });
 
+/********* View for the edit page form ********/
 var editView = Backbone.View.extend({
 
 	el: '.page',
@@ -194,6 +221,7 @@ var editView = Backbone.View.extend({
 	},
 });
 
+/********* View for the google form ********/
 var participateView = Backbone.View.extend({
 
 	el: '.page',
@@ -205,16 +233,20 @@ var participateView = Backbone.View.extend({
 	render: function() {
 		this.$el.html(_.template($('#participate-form').html()));
 
+		// Add the animations
 		$(".go-back").addClass("animation-fade-in");
 		$(".form-container").addClass("animation-fade-in");
 	},
 
 	removeForm: function() {
+
+		// Add the animations
 		$(".go-back").addClass("animation-fade-out");
 		$(".form-container").addClass("animation-slide-down-fade");
 
+		// After the navigations are finished, return to the home page
 		setTimeout(function(){
-			router.navigate('', {trigger: true});
+			router.navigate('#', {trigger: true});
 		},1000)
 	}
 });
