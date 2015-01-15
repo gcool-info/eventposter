@@ -66,7 +66,7 @@ var homeView = Backbone.View.extend({
 
 			actionBtnY = $(".action-btn").position().top;
 
-		},50);
+		},200);
 	},	
 
 
