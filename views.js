@@ -11,9 +11,6 @@ var homeView = Backbone.View.extend({
 	render: function() {
 		this.$el.html(_.template($('#home').html()));
 
-		// Set the position for the two buttons at the page bottom. It depends on the height of the content that is on the page
-		this.setBtnPosition();
-
 		// Set the main color
 		$('.divider-left').css('border-bottom',  '5px solid' + model.get("main-color"));
 		$('.divider-right').css('border-bottom',  '5px solid' + model.get("main-color"));
@@ -32,6 +29,9 @@ var homeView = Backbone.View.extend({
 
   		// Hide the buttons which do not have links
   		this.hideButtons();
+
+  		// Set the position for the two buttons at the page bottom. It depends on the height of the content that is on the page
+		this.setBtnPosition();
 
 	},
 
@@ -53,12 +53,20 @@ var homeView = Backbone.View.extend({
 
 	// Function to seet the position for the two buttons at the page bottom
 	setBtnPosition: function() {
-		var contentHeight = $(".description").position().top + $(".description").height();
-		var margin = 50;
 
-		$(".action-btn").css('top', contentHeight + margin);
+		$(".action-btn").css('display', 'none');
 
-		actionBtnY = $(".action-btn").position().top;
+		setTimeout(function(){
+			$(".action-btn").css('display', 'block');
+
+			var contentHeight = $(".description").position().top + $(".description").height();
+			var margin = 50;
+
+			$(".action-btn").css('top', contentHeight + margin);
+
+			actionBtnY = $(".action-btn").position().top;
+
+		},50);
 	},	
 
 
@@ -166,6 +174,7 @@ var videoView = Backbone.View.extend({
 	// Function to seet the position for the two buttons at the page bottom
 	setBtnPosition: function() {
 
+		// Herrendous hack to make sure that make sure that the details have rendered
 		if (actionBtnY == 0) {
 			var contentHeight = $(".video-container").height();
 			var margin = -120;
@@ -268,8 +277,6 @@ var detailsView = Backbone.View.extend({
 	// Function to seet the position for the two buttons at the page bottom
 	setBtnPosition: function() {
 		var contentHeight = $(".details").position().top + $(".details").height();
-
-		console.log(contentHeight);
 
 		if (actionBtnY < contentHeight)
 			$(".action-btn").css('top', contentHeight + 20);
