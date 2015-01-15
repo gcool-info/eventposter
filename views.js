@@ -23,6 +23,8 @@ var homeView = Backbone.View.extend({
 		// Entry Animations
 		$(".description").addClass("animation-slide-in-bottom");
   		$(".play-video").addClass("animation-slide-in-bottom");
+  		$(".divider-left").addClass("animation-slide-in-bottom");
+  		$(".divider-right").addClass("animation-slide-in-bottom");
   		$(".event-logo").addClass("animation-slide-in-right");
   		$(".organisation-logo").addClass("animation-slide-in-left");
   		$(".full").addClass("animation-slide-up-fade");
@@ -64,12 +66,16 @@ var homeView = Backbone.View.extend({
   		$(".play-video").removeClass("animation-slide-in-bottom");
   		$(".event-logo").removeClass("animation-slide-in-right");
   		$(".organisation-logo").removeClass("animation-slide-in-left");
+  		$(".divider-left").removeClass("animation-slide-in-bottom");
+  		$(".divider-right").removeClass("animation-slide-in-bottom");
   		$(".full").removeClass("animation-slide-up-fade");
 
   		/* Add new animation classes */
 		$(".organisation-logo").addClass("animation-slide-out-left");
 		$(".event-logo").addClass("animation-slide-out-right");
 		$(".play-video").addClass("animation-slide-out-bottom");
+		$(".divider-left").addClass("animation-slide-out-bottom");
+  		$(".divider-right").addClass("animation-slide-out-bottom");
 		$(".description").addClass("animation-slide-out-bottom");
 		$(".full").addClass("animation-slide-down-fade");
 	},
@@ -321,7 +327,6 @@ var editView = Backbone.View.extend({
 					$(".password").addClass('animation-slide-down-fade'); 
 					$('#password-verify').html('<i class="fa fa-smile-o green"></i>');
 				} else {
-
 					$('#password-verify').html('<i class="fa fa-frown-o"></i>');
 				}
 
@@ -354,7 +359,7 @@ var editView = Backbone.View.extend({
 				"data": data
 			},
 			success: function(response) {
-
+				router.navigate('#', {trigger: true});
 			},
 			error: function() {
 
