@@ -33,6 +33,10 @@ a:active {
 	color:  #ed1c24;
 }
 
+.white {
+	color: white;
+}
+
 .video-container {
 	position: fixed;
 	width: 100%;

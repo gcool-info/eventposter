@@ -215,10 +215,38 @@ var editView = Backbone.View.extend({
 
 	el: '.page',
 
+	events: {
+		'submit #website-data': 'submitData'
+	},
+
 	render: function() {
 		this.$el.html(_.template($('#edit').html()));
-
+		$(document).on('ready', function(){
+        	$("#accordion").accordion();
+    	});
 	},
+
+	submitData: function(e) {
+
+		var data ={ 
+			"title": $("#title").val(), 
+			"description": $("#baseline").val(), 
+			"subscibe-form": $("#google-form").val(),
+			"details": $("#details").val(),
+			"video-key": $("#video").val()
+		}  
+
+		$.ajax({
+			url: 'server/save.php',
+			type: 'POST',
+			data: {
+				"data": data
+			},
+			success: function() {
+				console.log('cool');
+			}
+	});
+	}
 });
 
 /********* View for the google form ********/
