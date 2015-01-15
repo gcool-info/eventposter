@@ -14,6 +14,12 @@ var homeView = Backbone.View.extend({
 		// Set the position for the two buttons at the page bottom. It depends on the height of the content that is on the page
 		this.setBtnPosition();
 
+		// Set the color
+		$('.divider-left').css('border-bottom',  '5px solid' + model.get("main-color"));
+		$('.divider-right').css('border-bottom',  '5px solid' + model.get("main-color"));
+		$('a:hover').css('color',  model.get("main-color"));
+		$('a').css('color',  model.get("main-color"));
+
 		// Entry Animations
 		$(".description").addClass("animation-slide-in-bottom");
   		$(".play-video").addClass("animation-slide-in-bottom");

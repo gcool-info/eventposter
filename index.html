@@ -250,10 +250,14 @@
 
     		 model.fetch({
     		 	success: function() {
-
-    		 		// Set the page title 
+    		 		
     		 		$(document).ready(function() {
+
+    		 			// Set the page title 
 				        document.title = model.get("title");
+
+				        // Set the page's main color
+				        $('body').css('color',  model.get("main-color"));    
 				    });
 
     		 		Backbone.history.start();
