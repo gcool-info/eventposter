@@ -141,6 +141,14 @@ a:active {
 	margin-top: 0.4em;
 }
 
+.thumb {
+	border:1px solid #;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;  
+	width: 100%;
+}
+
 /****************** ANIMATIONS ******************/
 
 @-webkit-keyframes slide-out-left {

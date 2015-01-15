@@ -118,6 +118,38 @@
 					      <input type="text" class="form-control" id="video" placeholder="just the youtube key" value="<%= model.get('video-key') %>">
 					    </div>
 					  </div>
+
+
+					  <div class="form-group">
+				    	<label for="background-photo" class="col-sm-2 control-label white">Background Photo</label>
+				    	<div class="col-sm-1">
+				    		<img class="thumb" src="<%= model.get('background-image') %>" />
+				    	</div>
+			    		<div class="col-sm-3">  
+							<input type="file" class="white" id="background-photo" />
+						</div>
+    				  </div>
+
+    				  <div class="form-group">
+				    	<label for="organisation-logo" class="col-sm-2 control-label white">Your organisation's logo</label>
+				    	<div class="col-sm-1">
+				    		<img class="thumb" src="<%= model.get('organisation-logo') %>" />
+				    	</div>
+			    		<div class="col-sm-3">  
+							<input type="file" class="white" id="organisation-logo" />
+						</div>
+    				  </div>
+
+    				  <div class="form-group">
+				    	<label for="event-logo" class="col-sm-2 control-label white">Your event's logo</label>
+				    	<div class="col-sm-1">
+				    		<img class="thumb" src="<%= model.get('event-logo') %>" />
+				    	</div>
+			    		<div class="col-sm-3">  
+							<input type="file" class="white" id="event-logo" />
+						</div>
+    				  </div>
+
 					  <div class="form-group">
 					    <div class="col-sm-offset-2 col-sm-10">
 					      <button type="submit" class="btn btn-default">Let's do this!</button>
