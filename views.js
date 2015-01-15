@@ -14,7 +14,7 @@ var homeView = Backbone.View.extend({
 		// Set the position for the two buttons at the page bottom. It depends on the height of the content that is on the page
 		this.setBtnPosition();
 
-		// Set the color
+		// Set the main color
 		$('.divider-left').css('border-bottom',  '5px solid' + model.get("main-color"));
 		$('.divider-right').css('border-bottom',  '5px solid' + model.get("main-color"));
 		$('a:hover').css('color',  model.get("main-color"));
@@ -30,6 +30,7 @@ var homeView = Backbone.View.extend({
   		$(".full").addClass("animation-slide-up-fade");
   		$(".action-btn").addClass("animation-slide-up");
 
+  		// Hide the buttons which do not have links
   		this.hideButtons();
 
 	},
@@ -52,10 +53,12 @@ var homeView = Backbone.View.extend({
 
 	// Function to seet the position for the two buttons at the page bottom
 	setBtnPosition: function() {
-		var contentHeight = $(".description").position.y;
-		var margin = 30;
+		var contentHeight = $(".description").position().top + $(".description").height();
+		var margin = 50;
 
 		$(".action-btn").css('top', contentHeight + margin);
+
+		actionBtnY = $(".action-btn").position().top;
 	},	
 
 
@@ -162,9 +165,14 @@ var videoView = Backbone.View.extend({
 
 	// Function to seet the position for the two buttons at the page bottom
 	setBtnPosition: function() {
-		var contentHeight = $(".video-container").height();
-		var margin = -120;
-		$(".action-btn").css('top',contentHeight + margin);
+
+		if (actionBtnY == 0) {
+			var contentHeight = $(".video-container").height();
+			var margin = -120;
+			$(".action-btn").css('top',contentHeight + margin);
+		} else {
+			$(".action-btn").css('top',actionBtnY);
+		}
 	},
 
 	// Navigate to the details of the event
@@ -259,12 +267,14 @@ var detailsView = Backbone.View.extend({
 
 	// Function to seet the position for the two buttons at the page bottom
 	setBtnPosition: function() {
-		var contentHeight = $(".details").height() + $(".go-back").height();
-		var pageHeight = $(".full").height();
+		var contentHeight = $(".details").position().top + $(".details").height();
 
-		var top = (contentHeight > pageHeight ? contentHeight + 30 : pageHeight - 110);
+		console.log(contentHeight);
 
-		$(".action-btn").css('top', top);
+		if (actionBtnY < contentHeight)
+			$(".action-btn").css('top', contentHeight + 20);
+		else
+			$(".action-btn").css('top', actionBtnY);
 	},
 
 	removeDetails: function() {
@@ -359,7 +369,6 @@ var editView = Backbone.View.extend({
 				"data": data
 			},
 			success: function(response) {
-				router.navigate('#', {trigger: true});
 			},
 			error: function() {
 
