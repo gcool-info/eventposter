@@ -28,6 +28,24 @@ var homeView = Backbone.View.extend({
   		$(".full").addClass("animation-slide-up-fade");
   		$(".action-btn").addClass("animation-slide-up");
 
+  		this.hideButtons();
+
+	},
+
+	// Function to hide video play, details & form if data hasn't been provided
+	hideButtons: function() {
+		var hasVideo = (this.model.get('video-key') !== '' ? true : false);
+		var hasform = (this.model.get('subscibe-form') !== '' ? true : false);
+		var hasDetails = (this.model.get('details') !== '' ? true : false);
+
+		if (!hasVideo)
+			$(".play-video").css('visibility', 'hidden');
+
+		if (!hasform)
+			$("#participate").css('visibility', 'hidden');
+
+		if (!hasDetails)
+			$("#learn-more").css('visibility', 'hidden');
 	},
 
 	// Function to seet the position for the two buttons at the page bottom
@@ -111,6 +129,20 @@ var videoView = Backbone.View.extend({
   		$(".video-container").addClass("animation-fade-in");
   		$(".full").addClass("animation-slide-down-fade");
   		$(".go-back").addClass("animation-fade-in");
+
+  		this.hideButtons();
+	},
+
+	// Function to hide video play, details & form if data hasn't been provided
+	hideButtons: function() {
+		var hasform = (this.model.get('subscibe-form') !== '' ? true : false);
+		var hasDetails = (this.model.get('details') !== '' ? true : false);
+
+		if (!hasform)
+			$("#participate").css('visibility', 'hidden');
+
+		if (!hasDetails)
+			$("#learn-more").css('visibility', 'hidden');
 	},
 
 	// Function to seet the position for the two buttons at the page bottom
@@ -186,7 +218,19 @@ var detailsView = Backbone.View.extend({
 		$(".full").addClass("animation-slide-up-fade");
 		$(".action-btn").addClass("animation-slide-down");
 
-		
+		this.hideButtons();
+	},
+
+	// Function to hide video play, details & form if data hasn't been provided
+	hideButtons: function() {
+		var hasform = (this.model.get('subscibe-form') !== '' ? true : false);
+		var hasDetails = (this.model.get('details') !== '' ? true : false);
+
+		if (!hasform)
+			$("#participate").css('visibility', 'hidden');
+
+		if (!hasDetails)
+			$("#learn-more").css('visibility', 'hidden');
 	},
 
 	// Function to seet the position for the two buttons at the page bottom
@@ -279,7 +323,7 @@ var editView = Backbone.View.extend({
 			"description": $("#baseline").val(), 
 			"subscibe-form": $("#google-form").val(),
 			"details": $("#details").val(),
-			"video-key": $("#video").val(),
+			"video-key": $("#video-key").val(),
 			"event-logo": $("#event-logo").val(),
 			"organisation-logo": $("#organisation-logo").val(),
 			"background-image": $("#background-image").val(),

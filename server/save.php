@@ -27,12 +27,7 @@
 	/* If the new data hasn't affected all elements of the db file, then we only apply changes to certain ones */
 	$old_data = json_decode($old_data);
 	foreach ($old_data as $key => $value) {
-		
-		if ($new_data[$key]) {
-			$data_to_write[$key] = $new_data[$key];
-		} else {
-			$data_to_write[$key] = $value;
-		}
+		$data_to_write[$key] = $new_data[$key];
 	}
 
 	/* Write the changes to the file */
