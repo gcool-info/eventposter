@@ -37,6 +37,10 @@ a:active {
 	color: white;
 }
 
+.green {
+	color: #33F781;
+}
+
 .video-container {
 	position: fixed;
 	width: 100%;
@@ -147,6 +151,16 @@ a:active {
 	-moz-border-radius: 5px;
 	border-radius: 5px;  
 	width: 100%;
+}
+
+.edit-form {
+	display: none;
+	opacity: 0;
+}
+
+.verification {
+	color: #ed1c24;
+	font-size: 3em;
 }
 
 /****************** ANIMATIONS ******************/

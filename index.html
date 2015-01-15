@@ -85,34 +85,43 @@
     		<div class="container">
     			<div class="row">
 					<form class="form-horizontal" id="website-data">
-					  <div class="form-group">
+					  <div class="form-group password">
+					    <label for="password" class="col-sm-2 control-label white">Your password</label>
+					    <div class="col-sm-6">
+					      <input type="password" class="form-control" id="password" placeholder="enter the password">
+					    </div>
+					    <div class="col-sm-1">
+				    		<div class = "verification" id="password-verify"></div>
+				    	</div>
+					  </div>
+					  <div class="form-group edit-form">
 					    <label for="title" class="col-sm-2 control-label white">Title</label>
 					    <div class="col-sm-6">
 					      <input type="text" class="form-control" id="title" placeholder="title" value="<%= model.get('title') %>">
 					    </div>
 					  </div>
-					  <div class="form-group">
+					  <div class="form-group edit-form">
 					    <label for="baseline" class="col-sm-2 control-label white">Baseline</label>
 					    <div class="col-sm-6">
 					      <input type="text" class="form-control" id="baseline" placeholder="baseline" value="<%= model.get('description') %>">
 					    </div>
 					  </div>
-					  <div class="form-group">
+					  <div class="form-group edit-form">
 					  	<div class="col-sm-10 col-sm-offset-2">
 					  		<a class = "white" href="http://support.mashery.com/docs/read/customizing_your_portal/Markdown_Cheat_Sheet" target="_blank"><i>Pssst! You can use markdown. Click me for the cheatsheet.</i></a>
 					  	</div>
-					    <label for="details" class="col-sm-2 control-label white">Details</label>
+					    <label for="details edit-form" class="col-sm-2 control-label white">Details</label>
 					    <div class="col-sm-6">
 					      <textarea class="form-control" id="details" rows="10" placeholder="details"><%= model.get('details') %></textarea>
 					    </div>
 					  </div>
-					  <div class="form-group">
+					  <div class="form-group edit-form">
 					    <label for="google-form" class="col-sm-2 control-label white">Google Form link</label>
 					    <div class="col-sm-6">
 					      <input type="text" class="form-control" id="google-form" placeholder="google form link" value="<%= model.get('subscibe-form') %>">
 					    </div>
 					  </div>
-					  <div class="form-group">
+					  <div class="form-group edit-form">
 					    <label for="video" class="col-sm-2 control-label white">Youtube Video Key</label>
 					    <div class="col-sm-6">
 					      <input type="text" class="form-control" id="video" placeholder="just the youtube key" value="<%= model.get('video-key') %>">
@@ -120,7 +129,7 @@
 					  </div>
 
 
-    				 <div class="form-group" >
+    				 <div class="form-group edit-form" >
 				    	<label for="background-photo" class="col-sm-2 control-label white">Background Photo</label>
 			    		<div class="col-sm-5">
 					      <input type="text" class="form-control image-upload" id="background-image" placeholder="the background image's url" value="<%= model.get('background-image') %>">
@@ -130,7 +139,7 @@
 				    	</div>
     				  </div>
 
-    				  <div class="form-group">
+    				  <div class="form-group edit-form">
 				    	<label for="organisation-logo" class="col-sm-2 control-label white">Your organisation's logo</label>
 				    	<div class="col-sm-5">
 					      <input type="text" class="form-control image-upload" id="organisation-logo" placeholder="your organisation's logo" value="<%= model.get('organisation-logo') %>">
@@ -140,7 +149,7 @@
 				    	</div>
     				  </div>
 
-    				  <div class="form-group">
+    				  <div class="form-group edit-form">
 				    	<label for="event-logo" class="col-sm-2 control-label white">Your event's logo</label>
 				    	<div class="col-sm-5">
 					      <input type="text" class="form-control image-upload" id="event-logo" placeholder="your event's logo" value="<%= model.get('event-logo') %>">
@@ -150,7 +159,7 @@
 				    	</div>
     				  </div>
 
-    				  <div class="form-group">
+    				  <div class="form-group edit-form">
 				    	<label for="main-color" class="col-sm-2 control-label white">Site main color</label>
 				    	<div class="col-sm-5">
 					      <input type="text" class="form-control main-color" id="main-color" placeholder="your site's main color" value="<%= model.get('main-color') %>">
@@ -161,7 +170,7 @@
     				  </div>
 
 
-					  <div class="form-group">
+					  <div class="form-group edit-form">
 					    <div class="col-sm-offset-2 col-sm-10">
 					      <button type="submit" class="btn btn-default">Let's do this!</button>
 					    </div>

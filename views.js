@@ -218,7 +218,8 @@ var editView = Backbone.View.extend({
 	events: {
 		'submit #website-data': 'submitData',
 		'keyup .image-upload': 'checkImage',
-		'keyup #main-color': 'checkColor'
+		'keyup #main-color': 'checkColor',
+		'keyup #password': 'checkPassword',
 	},
 
 	render: function() {
@@ -235,6 +236,33 @@ var editView = Backbone.View.extend({
 		var newColor = $(e.target).val();
 
 		$("#" + e.target.id + '-thumb').css('background-color', newColor);
+	},
+
+	checkPassword: function(e) {
+
+		$.ajax({
+			url: 'server/login.php',
+			type: 'POST',
+			data: {
+				"password": $(e.target).val()
+			},
+			success: function(response) {
+
+				if (response == "Correct Password") {
+					$(".edit-form").css('display', 'block');
+					$(".edit-form").addClass('animation-fade-in');
+					$(".password").addClass('animation-slide-down-fade'); 
+					$('#password-verify').html('<i class="fa fa-smile-o green"></i>');
+				} else {
+
+					$('#password-verify').html('<i class="fa fa-frown-o"></i>');
+				}
+
+			},
+			error: function() {
+
+			} 
+		});  
 	},
 
 	submitData: function(e) {
@@ -257,10 +285,13 @@ var editView = Backbone.View.extend({
 			data: {
 				"data": data
 			},
-			success: function() {
-				console.log('cool');
-			}
-	});
+			success: function(response) {
+
+			},
+			error: function() {
+
+			} 
+		});
 	}
 });
 

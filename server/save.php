@@ -1,12 +1,20 @@
 <?php
 
-	print_r('expression');
 	/* Check whether data exists */
 	if (!isset($_POST["data"]))
 		return false;
 
 	/* $new_data contains the data received. */
 	$new_data = $_POST["data"];
+
+	/* Check that the user has set the right password */
+	$handle = fopen("pass.txt", "r");
+	$password = fread($handle, filesize("pass.txt"));
+	fclose($handle);
+
+	if ($new_data->password !== $password)
+		die(json_encode(array('message' => 'Invalid Password', 'code' => 1337)));
+
 
 	/*$data_to_write contains the data we will write to the file. */
 	$data_to_write = [];
@@ -31,5 +39,4 @@
 	$handle = fopen("db.json", "w");
 	fwrite($handle, json_encode($data_to_write));
 	fclose($handle);
-
 ?>

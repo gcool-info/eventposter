@@ -1,2 +1,6 @@
-order deny,allow
 deny from all
+
+<FilesMatch ".(json|php)$">
+Order Allow,Deny
+allow from all
+</FilesMatch>
