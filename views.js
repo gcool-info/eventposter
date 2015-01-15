@@ -216,14 +216,25 @@ var editView = Backbone.View.extend({
 	el: '.page',
 
 	events: {
-		'submit #website-data': 'submitData'
+		'submit #website-data': 'submitData',
+		'keyup .image-upload': 'checkImage',
+		'keyup #main-color': 'checkColor'
 	},
 
 	render: function() {
 		this.$el.html(_.template($('#edit').html()));
-		$(document).on('ready', function(){
-        	$("#accordion").accordion();
-    	});
+	},
+
+	checkImage: function(e) {
+		var newImage = $(e.target).val();
+
+		$("#" + e.target.id + '-thumb').attr('src', newImage);
+	},
+
+	checkColor: function(e) {
+		var newColor = $(e.target).val();
+
+		$("#" + e.target.id + '-thumb').css('background-color', newColor);
 	},
 
 	submitData: function(e) {
@@ -233,7 +244,11 @@ var editView = Backbone.View.extend({
 			"description": $("#baseline").val(), 
 			"subscibe-form": $("#google-form").val(),
 			"details": $("#details").val(),
-			"video-key": $("#video").val()
+			"video-key": $("#video").val(),
+			"event-logo": $("#event-logo").val(),
+			"organisation-logo": $("#organisation-logo").val(),
+			"background-image": $("#background-image").val(),
+			"main-color": $("#main-color").val(),
 		}  
 
 		$.ajax({
