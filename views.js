@@ -123,7 +123,7 @@ var videoView = Backbone.View.extend({
 
 		// The entry animations
 		"use strict";
-  		$(".video-container").html('<iframe width="100%" height="100%" src="http://www.youtube.com/embed/' + this.model.get('video-key') + '?autoplay=1&loop=1&rel=0&wmode=transparent&showinfo=0&controls=0" frameborder="0" allowfullscreen wmode="Opaque"></iframe>');
+  		$(".video-container").html('<iframe width="100%" height="100%" src="http://www.youtube.com/embed/' + this.getVideoKey() + '?autoplay=1&loop=1&rel=0&wmode=transparent&showinfo=0&controls=0" frameborder="0" allowfullscreen wmode="Opaque"></iframe>');
 
   		$(".action-btn").addClass("animation-slide-down");
   		$(".video-container").addClass("animation-fade-in");
@@ -131,6 +131,15 @@ var videoView = Backbone.View.extend({
   		$(".go-back").addClass("animation-fade-in");
 
   		this.hideButtons();
+	},
+
+	getVideoKey: function() {
+		// Regular expression to get the video key (only youtube is supported for now)
+		var videoRegEx = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i;
+
+		var videoKey = this.model.get('video-key').match(videoRegEx)[1];
+
+		return videoKey;
 	},
 
 	// Function to hide video play, details & form if data hasn't been provided
@@ -173,7 +182,7 @@ var videoView = Backbone.View.extend({
 	// Exit animations
 	hideView: function() {
 		"use strict";
-  		$(".video-container").html('<iframe width="100%" height="100%" src="http://www.youtube.com/embed/' + this.model.get('video-key') + '?wmode=transparent&showinfo=0&controls=0" frameborder="0" allowfullscreen wmode="Opaque"></iframe>');
+  		$(".video-container").html('<iframe width="100%" height="100%" src="http://www.youtube.com/embed/' + this.getVideoKey() + '?wmode=transparent&showinfo=0&controls=0" frameborder="0" allowfullscreen wmode="Opaque"></iframe>');
 
 
   		$(".action-btn").removeClass("animation-slide-down");
@@ -184,6 +193,15 @@ var videoView = Backbone.View.extend({
   		$(".video-container").addClass("animation-fade-out");
   		$(".go-back").addClass("animation-fade-out");
   		$(".action-btn").addClass("animation-slide-up");
+	},
+
+	getVideoKey: function() {
+		// Regular expression to get the video key (only youtube is supported for now)
+		var videoRegEx = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i;
+
+		var videoKey = this.model.get('video-key').match(videoRegEx)[1];
+
+		return videoKey;
 	},
 
 	removeVideo: function() {
@@ -238,7 +256,6 @@ var detailsView = Backbone.View.extend({
 		var contentHeight = $(".details").height() + $(".go-back").height();
 		var pageHeight = $(".full").height();
 
-		console.log(pageHeight);
 		var top = (contentHeight > pageHeight ? contentHeight + 30 : pageHeight - 110);
 
 		$(".action-btn").css('top', top);
@@ -315,17 +332,6 @@ var editView = Backbone.View.extend({
 		});  
 	},
 
-	getVideoKey: function(url) {
-		/* Regular expression to get the video key (only youtube is supported for now) */
-		var videoRegEx = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i;
-
-		var videoKey = url.match(videoRegEx);
-
-		console.log(videoKey);
-
-		return videoKey[1];
-	},
-
 	submitData: function(e) {
 
 		var data ={ 
@@ -334,7 +340,7 @@ var editView = Backbone.View.extend({
 			"description": $("#baseline").val(), 
 			"subscibe-form": $("#google-form").val(),
 			"details": $("#details").val(),
-			"video-key": this.getVideoKey($("#video-key").val()),
+			"video-key": $("#video-key").val(),
 			"event-logo": $("#event-logo").val(),
 			"organisation-logo": $("#organisation-logo").val(),
 			"background-image": $("#background-image").val(),
