@@ -12,7 +12,7 @@
 	$password = fread($handle, filesize("pass.txt"));
 	fclose($handle);
 
-	if ($new_data->password !== $password)
+	if ($new_data[password] !== $password)
 		die(json_encode(array('message' => 'Invalid Password', 'code' => 1337)));
 
 

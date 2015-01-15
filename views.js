@@ -268,6 +268,7 @@ var editView = Backbone.View.extend({
 	submitData: function(e) {
 
 		var data ={ 
+			"password": $("#password").val(),
 			"title": $("#title").val(), 
 			"description": $("#baseline").val(), 
 			"subscibe-form": $("#google-form").val(),
