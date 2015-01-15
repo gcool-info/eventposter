@@ -315,6 +315,17 @@ var editView = Backbone.View.extend({
 		});  
 	},
 
+	getVideoKey: function(url) {
+		/* Regular expression to get the video key (only youtube is supported for now) */
+		var videoRegEx = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i;
+
+		var videoKey = url.match(videoRegEx);
+
+		console.log(videoKey);
+
+		return videoKey[1];
+	},
+
 	submitData: function(e) {
 
 		var data ={ 
@@ -323,7 +334,7 @@ var editView = Backbone.View.extend({
 			"description": $("#baseline").val(), 
 			"subscibe-form": $("#google-form").val(),
 			"details": $("#details").val(),
-			"video-key": $("#video-key").val(),
+			"video-key": this.getVideoKey($("#video-key").val()),
 			"event-logo": $("#event-logo").val(),
 			"organisation-logo": $("#organisation-logo").val(),
 			"background-image": $("#background-image").val(),
