@@ -2,6 +2,7 @@
 A one page app template to create a poster & publicize an event. 
 
 #####DEMO: http://gcool.info/eventposter/
+#####+ INFO: http://univership.org/projects/2gvXu8mnpwNju7eh6
 
 #####Home Page:
 ![ScreenShot](http://gcool.info/eventposter/screenshots/home.png)
