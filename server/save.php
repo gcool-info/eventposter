@@ -17,7 +17,7 @@
 
 
 	/*$data_to_write contains the data we will write to the file. */
-	$data_to_write = [];
+	$data_to_write = null;
 
 	/* Open & read the db file */
 	$handle = fopen("db.json", "r");
